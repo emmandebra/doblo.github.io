@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doblo Gonno Community Clinic & Maternity</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #0f2c59;
+            --light-blue: #f0f4f8;
+            --accent-blue: #1d4ed8;
+            --text-dark: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 10px 5%;
+            display: flex;
+            gap: 20px;
+            font-size: 0.9rem;
+        }
+        .top-bar span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .logo-placeholder {
+            width: 60px;
+            height: 60px;
+            background: #e2e8f0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--primary-blue);
+            border: 2px dashed var(--primary-blue);
+        }
+        .logo-text h1 {
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            text-transform: uppercase;
+        }
+        .logo-text p {
+            font-size: 0.9rem;
+            font-style: italic;
+            color: #666;
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        nav a:hover, nav a.active {
+            color: var(--accent-blue);
+            border-bottom: 2px solid var(--accent-blue);
+            padding-bottom: 5px;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr 0.6fr;
+            gap: 20px;
+            padding: 40px 5%;
+            background: #fff;
+        }
+        .hero-left {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .welcome {
+            color: red;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+        .hero-left h2 {
+            font-size: 2.8rem;
+            color: var(--primary-blue);
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        .hero-left .description {
+            color: #555;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .feature-box {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+        .feature-box i {
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            background: var(--light-blue);
+            padding: 10px;
+            border-radius: 50%;
+        }
+        .feature-box h4 {
+            color: var(--primary-blue);
+            margin-bottom: 3px;
+        }
+        .feature-box p {
+            font-size: 0.85rem;
+            color: #666;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        .btn {
+            padding: 12px 25px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.3s;
+        }
+        .btn-primary {
+            background: var(--primary-blue);
+            color: white;
+        }
+        .btn-primary:hover { background: #0a1f40; }
+        .btn-secondary {
+            border: 2px solid var(--primary-blue);
+            color: var(--primary-blue);
+        }
+        .btn-secondary:hover { background: var(--light-blue); }
+
+        /* Images Areas */
+        .image-placeholder {
+            background: #e2e8f0;
+            border: 2px dashed #cbd5e1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+            text-align: center;
+            border-radius: 8px;
+            min-height: 300px;
+            font-weight: 500;
+        }
+        .side-poster {
+            background: #fff8e7;
+            border: 2px dashed #fcd34d;
+            color: #b45309;
+        }
+
+        /* Footer Info Section */
+        .info-footer {
+            background: var(--light-blue);
+            padding: 40px 5%;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            border-top: 1px solid #e2e8f0;
+        }
+        .info-col h3 {
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .info-col h3 i {
+            background: white;
+            padding: 8px;
+            border-radius: 50%;
+            font-size: 0.9rem;
+        }
+        .info-col p, .info-col ul {
+            color: #555;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        .info-col ul {
+            list-style: none;
+        }
+        .info-col ul li {
+            margin-bottom: 5px;
+        }
+        .info-col .btn-sm {
+            display: inline-block;
+            margin-top: 15px;
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        /* Bottom Copyright Bar */
+        .bottom-bar {
+            background: var(--primary-blue);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero { grid-template-columns: 1fr; }
+            .info-footer { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 600px) {
+            .info-footer { grid-template-columns: 1fr; }
+            .features { grid-template-columns: 1fr; }
+            header { flex-direction: column; gap: 15px; }
+            nav ul { flex-wrap: wrap; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Bar Contact Info -->
+    <div class="top-bar">
+        <span><i class="fa-solid fa-phone"></i> 0342 296080</span>
+        <span><i class="fa-solid fa-envelope"></i> info@doblogonnoclinic.org</span>
+        <span><i class="fa-solid fa-clock"></i> Open 24 hours</span>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header>
+        <div class="logo-area">
+            <div class="logo-placeholder">LOGO</div>
+            <div class="logo-text">
+                <h1>Doblo Gonno</h1>
+                <p>Community Clinic & Maternity</p>
+                <small style="color: var(--accent-blue); font-weight: bold;">Your Health, Our Concern</small>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Facilities</a></li>
+                <li><a href="#">Gallery</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Content & Media Section -->
+    <section class="hero">
+        <div class="hero-left">
+            <p class="welcome">Welcome To</p>
+            <h2>DOBLO GONNO COMMUNITY CLINIC & MATERNITY</h2>
+            <p class="description">We are a 24-hour healthcare facility dedicated to providing quality, affordable, and compassionate healthcare for all.</p>
+            
+            <div class="features">
+                <div class="feature-box">
+                    <i class="fa-solid fa-clock"></i>
+                    <div>
+                        <h4>24/7 Service</h4>
+                        <p>Always open for you</p>
+                    </div>
+                </div>
+                <div class="feature-box">
+                    <i class="fa-solid fa-user-doctor"></i>
+                    <div>
+                        <h4>Qualified Staff</h4>
+                        <p>Experienced & caring professionals</p>
+                    </div>
+                </div>
+                <div class="feature-box">
+                    <i class="fa-solid fa-heart-pulse"></i>
+                    <div>
+                        <h4>Quality Care</h4>
+                        <p>Your health, our priority</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-buttons">
+                <a href="#" class="btn btn-primary">Our Services <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="#" class="btn btn-secondary"><i class="fa-solid fa-phone"></i> Contact Us</a>
+            </div>
+        </div>
+
+        <!-- Main Building Image Box -->
+        <div class="image-placeholder">
+            [ Main Facility Exterior Image Placeholder ] <br>
+            (Upload clinic building photo here)
+        </div>
+
+        <!-- Sidebar Poster Image Box -->
+        <div class="image-placeholder side-poster">
+            [ Service Poster & Interior Image Placeholder ] <br>
+            (Upload promotional services poster here)
+        </div>
+    </section>
+
+    <!-- Detailed Footer Information Grid -->
+    <section class="info-footer">
+        <div class="info-col">
+            <h3><i class="fa-solid fa-users"></i> About Us</h3>
+            <p>Doblo Gonno Community Clinic and Maternity is a registered healthcare facility in Accra, Ghana. We are committed to providing accessible and quality healthcare services to our community.</p>
+            <a href="#" class="btn-sm">Learn More</a>
+        </div>
+        
+        <div class="info-col">
+            <h3><i class="fa-solid fa-stethoscopes"></i> Our Services</h3>
+            <ul>
+                <li>• OPD</li>
+                <li>• In Patient (VIP Wards)</li>
+                <li>• Theatre (Caesarian Section, Fibroids, Hernias etc.)</li>
+                <li>• Antenatal (ANC)</li>
+                <li>• Paediatrics</li>
+                <li>• Deliveries</li>
+            </ul>
+            <a href="#" class="btn-sm">View All Services →</a>
+        </div>
+
+        <div class="info-col">
+            <h3><i class="fa-solid fa-location-dot"></i> Location</h3>
+            <p>Clinic Road - Doblo Gonno<br>Main Station</p>
+            <p>P.O BOX MD 1647<br>Accra-Ghana</p>
+            <a href="#" class="btn-sm" style="border: 1px solid var(--primary-blue); padding: 5px 10px; border-radius: 4px; display: inline-block;">View on Map</a>
+        </div>
+
+        <div class="info-col">
+            <h3><i class="fa-solid fa-headset"></i> Contact Us</h3>
+            <p><i class="fa-solid fa-phone"></i> 0342 296080</p>
+            <p><i class="fa-solid fa-mobile-screen"></i> 053 657 1144</p>
+            <p><i class="fa-solid fa-envelope"></i> info@doblogonnoclinic.org</p>
+            <p><i class="fa-solid fa-clock"></i> Open 24 hours</p>
+        </div>
+    </section>
+
+    <!-- Bottom Copyright & Motto Bar -->
+    <div class="bottom-bar">
+        <p>© 2026 Doblo Gonno Community Clinic & Maternity. All Rights Reserved.</p>
+        <p style="font-style: italic; opacity: 0.8; font-size: 0.85rem; margin-top: 5px;">Your Health, Our Concern</p>
+    </div>
+
+</body>
+</html>

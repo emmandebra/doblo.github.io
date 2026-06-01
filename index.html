@@ -4,492 +4,467 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doblo Gonno Community Clinic & Maternity</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        html { scroll-behavior: smooth; }
-        .hero-bg {
+        :root {
+            --primary-blue: #0f2c59;
+            --light-blue: #f0f4f8;
+            --accent-blue: #1d4ed8;
+            --text-dark: #333333;
+            --border-color: #cbd5e1;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
             background-color: #f8fafc;
+            color: var(--text-dark);
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 10px 5%;
+            display: flex;
+            gap: 30px;
+            font-size: 0.85rem;
+        }
+        .top-bar span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Header Navigation */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .logo-placeholder {
+            width: 55px;
+            height: 55px;
+            background: var(--light-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
+        }
+        .logo-text h1 {
+            font-size: 1.35rem;
+            color: var(--primary-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            line-height: 1.1;
+        }
+        .logo-text p {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #475569;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+        .logo-text small {
+            font-size: 0.8rem;
+            font-style: italic;
+            color: #64748b;
+            display: block;
+            margin-top: 2px;
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            padding: 5px 0;
+        }
+        nav a:hover, nav a.active {
+            color: var(--accent-blue);
+            border-bottom: 2px solid var(--primary-blue);
+        }
+
+        /* Hero Layout */
+        .hero {
+            display: grid;
+            grid-template-columns: 1.3fr 1.1fr 0.6fr;
+            gap: 25px;
+            padding: 50px 5%;
+            background: white;
+            align-items: stretch;
+        }
+        .hero-left {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-right: 20px;
+        }
+        .welcome {
+            color: #dc2626;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+        }
+        .hero-left h2 {
+            font-size: 2.6rem;
+            color: var(--primary-blue);
+            line-height: 1.2;
+            margin-bottom: 15px;
+            font-weight: 800;
+            border-bottom: 3px solid #f59e0b;
+            padding-bottom: 15px;
+        }
+        .hero-left .description {
+            color: #4b5563;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 35px;
+        }
+        
+        /* Core Features */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 35px;
+        }
+        .feature-box {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        .feature-box i {
+            font-size: 1.3rem;
+            color: var(--primary-blue);
+            background: var(--light-blue);
+            padding: 12px;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border-color);
+        }
+        .feature-box h4 {
+            color: var(--primary-blue);
+            font-size: 0.95rem;
+            margin-bottom: 2px;
+        }
+        .feature-box p {
+            font-size: 0.8rem;
+            color: #6b7280;
+        }
+        
+        /* Action Buttons */
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        .btn {
+            padding: 12px 28px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+        .btn-primary {
+            background: var(--primary-blue);
+            color: white;
+            border: 1px solid var(--primary-blue);
+        }
+        .btn-primary:hover {
+            background: #1e3a8a;
+            border-color: #1e3a8a;
+        }
+        .btn-secondary {
+            border: 2px solid var(--primary-blue);
+            color: var(--primary-blue);
+            background: transparent;
+        }
+        .btn-secondary:hover {
+            background: var(--light-blue);
+        }
+
+        /* Image Showcase Layout */
+        .hero-img-box, .hero-poster-box {
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border: 1px solid var(--border-color);
+            position: relative;
+        }
+        .hero-img-box img, .hero-poster-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Informational Footer Grid */
+        .info-footer {
+            background: var(--light-blue);
+            padding: 50px 5%;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            border-top: 1px solid var(--border-color);
+        }
+        .info-col {
+            display: flex;
+            flex-direction: column;
+        }
+        .info-col h3 {
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            font-size: 1rem;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+        }
+        .info-col h3 i {
+            background: white;
+            padding: 8px;
+            border-radius: 50%;
+            font-size: 0.85rem;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border-color);
+        }
+        .info-col p, .info-col ul {
+            color: #475569;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        .info-col ul {
+            list-style: none;
+        }
+        .info-col ul li {
+            margin-bottom: 8px;
+            border-bottom: 1px dashed rgba(15, 44, 89, 0.1);
+            padding-bottom: 4px;
+        }
+        .info-col .btn-sm {
+            display: inline-block;
+            margin-top: auto;
+            padding-top: 15px;
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        .info-col .btn-sm:hover {
+            color: var(--primary-blue);
+        }
+        .map-btn {
+            border: 1px solid var(--primary-blue);
+            padding: 6px 14px;
+            border-radius: 4px;
+            text-align: center;
+            margin-top: 15px;
+            background: white;
+            max-width: 130px;
+        }
+
+        /* Base Contact Icon Styling */
+        .info-col .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        /* Bottom Footer Copyright */
+        .bottom-bar {
+            background: var(--primary-blue);
+            color: #cbd5e1;
+            text-align: center;
+            padding: 25px;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 1200px) {
+            .hero { grid-template-columns: 1fr 1fr; }
+            .hero-poster-box { grid-column: span 2; max-height: 400px; }
+        }
+        @media (max-width: 900px) {
+            .info-footer { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 650px) {
+            .hero { grid-template-columns: 1fr; }
+            .hero-poster-box { grid-column: span 1; }
+            .info-footer { grid-template-columns: 1fr; }
+            .features { grid-template-columns: 1fr; gap: 20px; }
+            header { flex-direction: column; gap: 15px; text-align: center; }
+            .logo-area { flex-direction: column; }
+            nav ul { flex-wrap: wrap; justify-content: center; gap: 15px; }
+            .top-bar { flex-direction: column; gap: 8px; align-items: center; }
         }
     </style>
 </head>
-<body class="font-sans text-gray-800 bg-white">
+<body>
 
-    <!-- TOP ANNOUNCEMENT BAR -->
-    <div class="bg-[#1e3a8a] text-white text-xs md:text-sm py-2 px-4">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
-            <div class="flex flex-wrap justify-center gap-4 md:gap-6">
-                <a href="tel:0342296080" class="hover:underline flex items-center gap-2">
-                    <i class="fas fa-phone-alt text-sky-400"></i> 0342 296080
-                </a>
-                <a href="mailto:info@doblogonnoclinic.org" class="hover:underline flex items-center gap-2">
-                    <i class="fas fa-envelope text-sky-400"></i> info@doblogonnoclinic.org
-                </a>
-            </div>
-            <div class="flex items-center gap-2">
-                <i class="fas fa-clock text-sky-400"></i> <span>Open 24 hours</span>
-            </div>
-        </div>
+    <!-- Top Contact Bar -->
+    <div class="top-bar">
+        <span><i class="fa-solid fa-phone"></i> 0342 296080</span>
+        <span><i class="fa-solid fa-envelope"></i> info@doblogonnoclinic.org</span>
+        <span><i class="fa-solid fa-clock"></i> Open 24 hours</span>
     </div>
 
-    <!-- MAIN NAVIGATION -->
-    <header class="sticky top-0 bg-white shadow-md z-50">
-        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-            <!-- Logo & Brand Title -->
-            <div class="flex items-center gap-3">
-                <!-- Fallback graphic if local image asset isn't present -->
-                <div class="w-12 h-12 bg-blue-900 rounded-full flex items-center justify-center text-white border-2 border-sky-400 font-bold text-xl shadow-md">
-                    <i class="fas fa-hand-holding-medical"></i>
-                </div>
-                <div>
-                    <h1 class="text-lg md:text-xl font-bold text-[#1e3a8a] tracking-tight leading-tight">DOBLO GONNO</h1>
-                    <p class="text-xs font-semibold text-gray-600 tracking-wider">COMMUNITY CLINIC & MATERNITY</p>
-                    <p class="text-[10px] italic text-sky-600 font-medium">Your Health, Our Concern</p>
-                </div>
+    <!-- Website Header -->
+    <header>
+        <div class="logo-area">
+            <div class="logo-placeholder">DG</div>
+            <div class="logo-text">
+                <h1>Doblo Gonno</h1>
+                <p>Community Clinic & Maternity</p>
+                <small>Your Health, Our Concern</small>
             </div>
-
-            <!-- Desktop Nav Links -->
-            <nav class="hidden md:flex space-x-6 lg:space-x-8 font-medium text-gray-600 text-sm lg:text-base">
-                <a href="#home" class="hover:text-[#1e3a8a] transition-colors border-b-2 border-transparent hover:border-[#1e3a8a] pb-1">Home</a>
-                <a href="#about" class="hover:text-[#1e3a8a] transition-colors border-b-2 border-transparent hover:border-[#1e3a8a] pb-1">About Us</a>
-                <a href="#services" class="hover:text-[#1e3a8a] transition-colors border-b-2 border-transparent hover:border-[#1e3a8a] pb-1">Services</a>
-                <a href="#facilities" class="hover:text-[#1e3a8a] transition-colors border-b-2 border-transparent hover:border-[#1e3a8a] pb-1">Facilities</a>
-                <a href="#gallery" class="hover:text-[#1e3a8a] transition-colors border-b-2 border-transparent hover:border-[#1e3a8a] pb-1">Gallery</a>
-                <a href="#contact" class="hover:text-[#1e3a8a] transition-colors border-b-2 border-transparent hover:border-[#1e3a8a] pb-1">Contact Us</a>
-            </nav>
-
-            <!-- Mobile Menu Button -->
-            <button id="menu-btn" class="md:hidden text-gray-600 focus:outline-none">
-                <i class="fas fa-bars text-2xl"></i>
-            </button>
         </div>
-
-        <!-- Mobile Nav Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 px-4 py-3 space-y-3 shadow-inner">
-            <a href="#home" class="block text-gray-600 hover:text-[#1e3a8a] font-medium py-1">Home</a>
-            <a href="#about" class="block text-gray-600 hover:text-[#1e3a8a] font-medium py-1">About Us</a>
-            <a href="#services" class="block text-gray-600 hover:text-[#1e3a8a] font-medium py-1">Services</a>
-            <a href="#facilities" class="block text-gray-600 hover:text-[#1e3a8a] font-medium py-1">Facilities</a>
-            <a href="#gallery" class="block text-gray-600 hover:text-[#1e3a8a] font-medium py-1">Gallery</a>
-            <a href="#contact" class="block text-gray-600 hover:text-[#1e3a8a] font-medium py-1">Contact Us</a>
-        </div>
+        <nav>
+            <ul>
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Facilities</a></li>
+                <li><a href="#">Gallery</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <!-- HERO SECTION -->
-    <section id="home" class="hero-bg py-12 md:py-20 px-4 overflow-hidden border-b border-gray-100">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+    <!-- Main Presentation Hero -->
+    <section class="hero">
+        <div class="hero-left">
+            <p class="welcome">Welcome To</p>
+            <h2>DOBLO GONNO COMMUNITY CLINIC & MATERNITY</h2>
+            <p class="description">We are a 24-hour healthcare facility dedicated to providing quality, affordable, and compassionate healthcare for all.</p>
             
-            <!-- Left Text Content -->
-            <div class="lg:col-span-6 space-y-6">
-                <div class="space-y-2">
-                    <p class="text-red-600 uppercase tracking-widest font-bold text-sm">Welcome to</p>
-                    <h2 class="text-3xl md:text-5xl font-black text-[#1e3a8a] leading-tight">
-                        DOBLO GONNO COMMUNITY CLINIC & MATERNITY
-                    </h2>
-                    <div class="w-20 h-1 bg-yellow-500 rounded mt-2"></div>
-                </div>
-                
-                <p class="text-gray-600 text-base md:text-lg max-w-xl leading-relaxed">
-                    We are a 24-hour healthcare facility dedicated to providing quality, affordable, and compassionate healthcare for all.
-                </p>
-
-                <!-- Value Props / Badges -->
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
-                    <div class="flex items-start gap-3">
-                        <div class="bg-blue-100 p-2.5 rounded-full text-[#1e3a8a]">
-                            <i class="fas fa-history text-lg"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-sm text-[#1e3a8a]">24/7 Service</h4>
-                            <p class="text-xs text-gray-500">Always open for you</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-3">
-                        <div class="bg-blue-100 p-2.5 rounded-full text-[#1e3a8a]">
-                            <i class="fas fa-users text-lg"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-sm text-[#1e3a8a]">Qualified Staff</h4>
-                            <p class="text-xs text-gray-500">Experienced professionals</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-3">
-                        <div class="bg-blue-100 p-2.5 rounded-full text-[#1e3a8a]">
-                            <i class="fas fa-heart text-lg"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-sm text-[#1e3a8a]">Quality Care</h4>
-                            <p class="text-xs text-gray-500">Your health, our priority</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Call to Actions -->
-                <div class="flex flex-wrap gap-4 pt-4">
-                    <a href="#services" class="bg-[#1e3a8a] hover:bg-blue-900 text-white font-semibold px-6 py-3 rounded-lg shadow-md transition-colors flex items-center gap-2">
-                        Our Services <i class="fas fa-arrow-right text-xs"></i>
-                    </a>
-                    <a href="#contact" class="border-2 border-[#1e3a8a] text-[#1e3a8a] hover:bg-blue-50 font-semibold px-6 py-3 rounded-lg transition-colors flex items-center gap-2">
-                        <i class="fas fa-phone-alt text-xs"></i> Contact Us
-                    </a>
-                </div>
-            </div>
-
-            <!-- Right Visual Elements -->
-            <div class="lg:col-span-6 relative">
-                <!-- Embedded Image Reference Frame -->
-                <div class="bg-white p-3 rounded-xl shadow-xl border border-gray-100">
-                    <img src="ChatGPT Image May 31, 2026, 10_05_28 PM.png" alt="Doblo Gonno Community Clinic Building Showcase" class="w-full h-auto rounded-lg object-cover">
-                    <p class="text-center text-xs text-gray-400 mt-2 italic">Official Facility Billboard & Main Building Entryway Reference</p>
-                </div>
-                <!-- NHIS Badge Accent -->
-                <div class="absolute -bottom-5 -left-5 bg-emerald-600 text-white px-4 py-2 rounded-lg shadow-lg flex items-center gap-2 font-bold text-sm border-2 border-white">
-                    <i class="fas fa-check-circle"></i> NHIS Accredited
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- QUICK OVERVIEW FOOTBANNER / INFO BLOCKS -->
-    <section class="bg-slate-50 py-12 px-4 border-b border-gray-200">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <!-- About Quick -->
-            <div class="flex gap-4">
-                <div class="text-blue-900 text-2xl pt-1">
-                    <i class="fas fa-user-md"></i>
-                </div>
-                <div>
-                    <h3 class="font-bold text-gray-900 mb-2 uppercase text-sm tracking-wider">About Us</h3>
-                    <p class="text-xs text-gray-600 leading-relaxed">Doblo Gonno Community Clinic and Maternity is a registered healthcare facility in Accra, Ghana. We are committed to providing accessible and quality healthcare services to our community.</p>
-                </div>
-            </div>
-            <!-- Services Quick -->
-            <div class="flex gap-4">
-                <div class="text-blue-900 text-2xl pt-1">
-                    <i class="fas fa-stethoscopes"></i>
-                </div>
-                <div>
-                    <h3 class="font-bold text-gray-900 mb-2 uppercase text-sm tracking-wider">Core Services</h3>
-                    <ul class="text-xs text-gray-600 space-y-1 list-disc list-inside">
-                        <li>OPD & In-Patient</li>
-                        <li>Theatre & Deliveries</li>
-                        <li>Antenatal (ANC)</li>
-                        <li>Paediatrics</li>
-                    </ul>
-                </div>
-            </div>
-            <!-- Location Quick -->
-            <div class="flex gap-4">
-                <div class="text-blue-900 text-2xl pt-1">
-                    <i class="fas fa-map-marker-alt"></i>
-                </div>
-                <div>
-                    <h3 class="font-bold text-gray-900 mb-2 uppercase text-sm tracking-wider">Location</h3>
-                    <p class="text-xs text-gray-600 leading-relaxed">
-                        Clinic Road - Doblo Gonno Main Station<br>
-                        P.O. BOX MD 1647<br>
-                        Accra-Ghana
-                    </p>
-                </div>
-            </div>
-            <!-- Contact Quick -->
-            <div class="flex gap-4">
-                <div class="text-blue-900 text-2xl pt-1">
-                    <i class="fas fa-address-book"></i>
-                </div>
-                <div>
-                    <h3 class="font-bold text-gray-900 mb-2 uppercase text-sm tracking-wider">Contact Direct</h3>
-                    <p class="text-xs text-gray-600 space-y-1">
-                        <i class="fas fa-phone"></i> 0342 296080<br>
-                        <i class="fas fa-mobile-alt"></i> 053 657 1144<br>
-                        <i class="fas fa-envelope"></i> info@doblogonnoclinic.org
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FULL ABOUT US SECTION -->
-    <section id="about" class="py-16 px-4 max-w-7xl mx-auto">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div class="space-y-6">
-                <span class="text-xs font-bold text-blue-900 uppercase tracking-widest bg-blue-50 px-3 py-1 rounded">Our Profile</span>
-                <h2 class="text-3xl font-bold text-gray-900">Registered, Credentialed, and Built to Serve</h2>
-                <p class="text-gray-600 leading-relaxed">
-                    At Doblo Gonno Community Clinic & Maternity, we believe that high-quality medical attention should not be a luxury. Established as a licensed healthcare hub in Accra, Ghana, our focus remains firmly fixed on the overall wellness of families within our community.
-                </p>
-                <div class="border-l-4 border-yellow-500 pl-4 py-2 italic text-gray-700 bg-amber-50/50 rounded-r">
-                    "Your Health, Our Concern" drives every procedure, diagnosis, and delivery under our roof.
-                </div>
-                <div class="bg-slate-50 p-4 rounded-xl border border-gray-200 flex items-center gap-4">
-                    <i class="fas fa-shield-alt text-3xl text-emerald-600"></i>
+            <div class="features">
+                <div class="feature-box">
+                    <i class="fa-solid fa-clock"></i>
                     <div>
-                        <h4 class="font-bold text-gray-900">NHIS Accredited Partner</h4>
-                        <p class="text-sm text-gray-600">We proudly honor National Health Insurance Scheme coverages to keep medical bills manageable.</p>
+                        <h4>24/7 Service</h4>
+                        <p>Always open for you</p>
                     </div>
                 </div>
-            </div>
-            <div class="bg-gradient-to-br from-blue-900 to-indigo-950 text-white p-8 rounded-2xl shadow-xl space-y-6">
-                <h3 class="text-xl font-bold text-yellow-400 border-b border-blue-800 pb-2">Why Our Community Trusts Us</h3>
-                <div class="space-y-4">
-                    <div class="flex items-start gap-3">
-                        <i class="fas fa-check text-yellow-400 mt-1"></i>
-                        <p class="text-sm"><strong class="block text-white text-base">Uninterrupted Operations</strong> Emergency services and maternity wings are fully manned 24 hours a day, 7 days a week.</p>
-                    </div>
-                    <div class="flex items-start gap-3">
-                        <i class="fas fa-check text-yellow-400 mt-1"></i>
-                        <p class="text-sm"><strong class="block text-white text-base">Comprehensive Medical Setup</strong> From standard outpatient diagnostics to specialized theater surgeries, avoid hospital jumping.</p>
-                    </div>
-                    <div class="flex items-start gap-3">
-                        <i class="fas fa-check text-yellow-400 mt-1"></i>
-                        <p class="text-sm"><strong class="block text-white text-base">Empathetic Care Team</strong> Professional midwives, general practitioners, and laboratory specialists treating you like kin.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- DETAILED SERVICES SECTION -->
-    <section id="services" class="bg-gray-50 py-16 px-4">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
-                <span class="text-xs font-bold text-blue-900 uppercase tracking-widest bg-blue-100 px-3 py-1 rounded">Clinical Capabilities</span>
-                <h2 class="text-3xl font-bold text-gray-900">Our Comprehensive Services</h2>
-                <p class="text-gray-600 text-sm">Every medical discipline needed to preserve and protect your household's health is active right here.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Service 1 -->
-                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md border border-gray-100 transition-shadow">
-                    <div class="text-blue-900 text-3xl mb-4"><i class="fas fa-clinic-medical"></i></div>
-                    <h3 class="font-bold text-lg text-gray-900 mb-2">OPD (Out-Patient Department)</h3>
-                    <p class="text-sm text-gray-600">Daily walk-in consultations, primary triage, preventative medicine, and general health screenings.</p>
-                </div>
-                <!-- Service 2 -->
-                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md border border-gray-100 transition-shadow">
-                    <div class="text-blue-900 text-3xl mb-4"><i class="fas fa-procedures"></i></div>
-                    <h3 class="font-bold text-lg text-gray-900 mb-2">In-Patient Services</h3>
-                    <p class="text-sm text-gray-600">Comfortable recovery wings, including VIP Wards equipped for optimal patient rest and continuous monitoring.</p>
-                </div>
-                <!-- Service 3 -->
-                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md border border-gray-100 transition-shadow">
-                    <div class="text-blue-900 text-3xl mb-4"><i class="fas fa-heartbeat"></i></div>
-                    <h3 class="font-bold text-lg text-gray-900 mb-2">Surgical Theatre</h3>
-                    <p class="text-sm text-gray-600">Advanced surgical intervention room handles Caesarian Sections, Fibroids removals, Hernia repairs, and more.</p>
-                </div>
-                <!-- Service 4 -->
-                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md border border-gray-100 transition-shadow">
-                    <div class="text-blue-900 text-3xl mb-4"><i class="fas fa-baby-carriage"></i></div>
-                    <h3 class="font-bold text-lg text-gray-900 mb-2">Maternity & Antenatal (ANC)</h3>
-                    <p class="text-sm text-gray-600">Complete prenatal support schedules, secure guided deliveries, and attentive post-natal checks.</p>
-                </div>
-                <!-- Service 5 -->
-                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md border border-gray-100 transition-shadow">
-                    <div class="text-blue-900 text-3xl mb-4"><i class="fas fa-baby"></i></div>
-                    <h3 class="font-bold text-lg text-gray-900 mb-2">Paediatrics</h3>
-                    <p class="text-sm text-gray-600">Specialized medical tracking and diagnostic attention tailored exclusively for infants and maturing children.</p>
-                </div>
-                <!-- Service 6 -->
-                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md border border-gray-100 transition-shadow">
-                    <div class="text-blue-900 text-3xl mb-4"><i class="fas fa-ambulance"></i></div>
-                    <h3 class="font-bold text-lg text-gray-900 mb-2">Emergency Services</h3>
-                    <p class="text-sm text-gray-600">Equipped for rapid crisis management, stabilizing urgent health complications at any time of night or day.</p>
-                </div>
-                <!-- Service 7 -->
-                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md border border-gray-100 transition-shadow">
-                    <div class="text-blue-900 text-3xl mb-4"><i class="fas fa-flask"></i></div>
-                    <h3 class="font-bold text-lg text-gray-900 mb-2">Laboratory & Diagnostics</h3>
-                    <p class="text-sm text-gray-600">Precise on-site blood panels, specimen analysis, and ultra-sound scans for immediate medical insights.</p>
-                </div>
-                <!-- Service 8 -->
-                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md border border-gray-100 transition-shadow">
-                    <div class="text-blue-900 text-3xl mb-4"><i class="fas fa-notes-medical"></i></div>
-                    <h3 class="font-bold text-lg text-gray-900 mb-2">Special Clinics</h3>
-                    <p class="text-sm text-gray-600">Targeted chronic management and wellness tracks covering Diabetes, Hypertension, and Stroke rehabilitation.</p>
-                </div>
-                <!-- Service 9 -->
-                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md border border-gray-100 transition-shadow">
-                    <div class="text-blue-900 text-3xl mb-4"><i class="fas fa-pills"></i></div>
-                    <h3 class="font-bold text-lg text-gray-900 mb-2">Pharmacy & Comprehensive Checks</h3>
-                    <p class="text-sm text-gray-600">Stocked with genuine, accurately measured therapeutics along with full physical packages and home care visits.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FACILITIES & INTERIORS SECTION -->
-    <section id="facilities" class="py-16 px-4 max-w-7xl mx-auto">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div class="lg:col-span-5 space-y-5">
-                <span class="text-xs font-bold text-blue-900 uppercase tracking-widest bg-blue-50 px-3 py-1 rounded">Inside the Facility</span>
-                <h2 class="text-3xl font-bold text-gray-900">Clean, Controlled, and Comforting Environments</h2>
-                <p class="text-gray-600 text-sm leading-relaxed">
-                    We maintain strict sanitization regimens within all halls. Our main waiting bays are fitted with comfortable modern seating, functional wall entertainment systems, and clear navigation paths to ensure your time inside our doors is peaceful.
-                </p>
-                <div class="space-y-2 text-sm text-gray-700 font-medium">
-                    <div class="flex items-center gap-2"><i class="fas fa-shield-virus text-emerald-600"></i> Disinfected multiple times daily</div>
-                    <div class="flex items-center gap-2"><i class="fas fa-chair text-emerald-600"></i> Ample social-distanced waiting seating</div>
-                    <div class="flex items-center gap-2"><i class="fas fa-fan text-emerald-600"></i> Well-ventilated, well-lit corridors</div>
-                </div>
-            </div>
-            <div class="lg:col-span-7">
-                <div class="bg-white p-2 border border-gray-200 rounded-xl shadow-md">
-                    <!-- Referencing top right quadrant of provided picture -->
-                    <img src="ChatGPT Image May 31, 2026, 10_05_28 PM.png" alt="Facility Interior Seating Corridor" class="w-full h-80 object-cover object-right-top rounded-lg">
-                    <p class="text-xs text-gray-400 text-center mt-2 italic">Interior Corridor Waiting Lounge View excerpted from site profile</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- GALLERY SECTION -->
-    <section id="gallery" class="bg-gray-100 py-16 px-4">
-        <div class="max-w-7xl mx-auto space-y-8">
-            <div class="text-center max-w-md mx-auto space-y-2">
-                <h2 class="text-3xl font-bold text-gray-900">Gallery & Assets</h2>
-                <p class="text-sm text-gray-600">Visual perspectives from the Doblo Gonno Clinic premises.</p>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="overflow-hidden rounded-xl bg-white p-2 shadow-sm border border-gray-200">
-                    <img src="ChatGPT Image May 31, 2026, 10_05_28 PM.png" alt="Doblo Gonno Front Entrance Profile" class="w-full h-64 object-cover object-center rounded-lg hover:scale-105 transition-transform duration-300">
-                    <span class="block text-xs font-semibold text-gray-500 mt-2 text-center">Facility Facade & Vehicle Entrance</span>
-                </div>
-                <div class="overflow-hidden rounded-xl bg-white p-2 shadow-sm border border-gray-200">
-                    <img src="ChatGPT Image May 31, 2026, 10_05_28 PM.png" alt="Clinic Interior Waiting Hall Close View" class="w-full h-64 object-cover object-right rounded-lg hover:scale-105 transition-transform duration-300">
-                    <span class="block text-xs font-semibold text-gray-500 mt-2 text-center">Patient Waiting Station Lounge</span>
-                </div>
-                <div class="overflow-hidden rounded-xl bg-white p-2 shadow-sm border border-gray-200">
-                    <img src="ChatGPT Image May 31, 2026, 10_05_28 PM.png" alt="Services Flyer Asset Display" class="w-full h-64 object-cover object-right-bottom rounded-lg hover:scale-105 transition-transform duration-300">
-                    <span class="block text-xs font-semibold text-gray-500 mt-2 text-center">Comprehensive Official Services Flyer</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CONTACT & LOCATION DETAILS WITH INTERACTIVE CONTACT FORM -->
-    <section id="contact" class="py-16 px-4 max-w-7xl mx-auto">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-            
-            <!-- Details Panel -->
-            <div class="lg:col-span-5 space-y-6">
-                <div>
-                    <span class="text-xs font-bold text-blue-900 uppercase tracking-widest bg-blue-50 Bash px-3 py-1 rounded">Reach Out</span>
-                    <h2 class="text-3xl font-bold text-gray-900 mt-2">Get in Touch With Us</h2>
-                </div>
-                <p class="text-gray-600 text-sm">
-                    Have questions about specific surgical costs, NHIS coverage options, or scheduling an ultrasound? Call our reception lines directly or stop by the facility station.
-                </p>
-
-                <div class="space-y-4">
-                    <div class="flex items-center gap-4 p-4 bg-slate-50 rounded-xl border border-gray-100">
-                        <div class="w-10 h-10 rounded-full bg-blue-900 text-white flex items-center justify-center"><i class="fas fa-phone-alt"></i></div>
-                        <div>
-                            <span class="block text-xs text-gray-400 font-bold uppercase">Main Desk</span>
-                            <a href="tel:0342296080" class="text-base font-bold text-gray-900 hover:underline">0342 296080</a>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-4 p-4 bg-slate-50 rounded-xl border border-gray-100">
-                        <div class="w-10 h-10 rounded-full bg-blue-900 text-white flex items-center justify-center"><i class="fas fa-mobile-alt"></i></div>
-                        <div>
-                            <span class="block text-xs text-gray-400 font-bold uppercase">Alternate Mobile</span>
-                            <a href="tel:0536571144" class="text-base font-bold text-gray-900 hover:underline">053 657 1144</a>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-4 p-4 bg-slate-50 rounded-xl border border-gray-100">
-                        <div class="w-10 h-10 rounded-full bg-blue-900 text-white flex items-center justify-center"><i class="fas fa-envelope"></i></div>
-                        <div>
-                            <span class="block text-xs text-gray-400 font-bold uppercase">Email Enquiries</span>
-                            <a href="mailto:info@doblogonnoclinic.org" class="text-base font-bold text-blue-900 hover:underline">info@doblogonnoclinic.org</a>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-4 p-4 bg-slate-50 rounded-xl border border-gray-100">
-                        <div class="w-10 h-10 rounded-full bg-blue-900 text-white flex items-center justify-center"><i class="fas fa-map-marked-alt"></i></div>
-                        <div>
-                            <span class="block text-xs text-gray-400 font-bold uppercase">Address Location</span>
-                            <p class="text-sm font-bold text-gray-900">Clinic Road - Doblo Gonno Main Station, Accra, Ghana</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Interaction Panel / Simple Contact Form -->
-            <div class="lg:col-span-7 bg-white border border-gray-200 p-6 md:p-8 rounded-2xl shadow-sm space-y-4">
-                <h3 class="text-xl font-bold text-gray-900">Send an Online Message</h3>
-                <form class="space-y-4" onsubmit="alert('Thank you for reaching out! A medical representative will follow up shortly.'); return false;">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Your Full Name</label>
-                            <input type="text" required class="w-full border border-gray-300 px-3 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-900 text-sm">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Phone Number</label>
-                            <input type="tel" required class="w-full border border-gray-300 px-3 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-900 text-sm">
-                        </div>
-                    </div>
+                <div class="feature-box">
+                    <i class="fa-solid fa-user-doctor"></i>
                     <div>
-                        <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Subject Topic</label>
-                        <select class="w-full border border-gray-300 px-3 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-900 text-sm bg-white">
-                            <option>General Clinical Inquiry</option>
-                            <option>Maternity & Antenatal Appointment</option>
-                            <option>Surgical Consultation (Theatre)</option>
-                            <option>Diagnostics / Lab Reports</option>
-                        </select>
+                        <h4>Qualified Staff</h4>
+                        <p>Experienced team</p>
                     </div>
+                </div>
+                <div class="feature-box">
+                    <i class="fa-solid fa-heart-pulse"></i>
                     <div>
-                        <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Message Detail</label>
-                        <textarea rows="4" required placeholder="How can our clinical staff assist you today?" class="w-full border border-gray-300 px-3 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-900 text-sm"></textarea>
+                        <h4>Quality Care</h4>
+                        <p>Our top priority</p>
                     </div>
-                    <button type="submit" class="w-full bg-[#1e3a8a] text-white font-bold py-3 rounded-lg hover:bg-blue-900 transition-colors shadow-md text-sm">
-                        Submit Inquiry Message
-                    </button>
-                </form>
+                </div>
             </div>
 
+            <div class="hero-buttons">
+                <a href="#" class="btn btn-primary">Our Services <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="#" class="btn btn-secondary"><i class="fa-solid fa-phone"></i> Contact Us</a>
+            </div>
+        </div>
+
+        <!-- Center Image: Main Building Facility -->
+        <div class="hero-img-box">
+            <img src="https://images.unsplash.com/photo-1587351021759-3e566b6af7cc?auto=format&fit=crop&w=800&q=80" alt="Clinic Exterior">
+        </div>
+
+        <!-- Right Image: Services Side Poster -->
+        <div class="hero-poster-box">
+            <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=500&q=80" alt="Medical Banner">
         </div>
     </section>
 
-    <!-- FOOTER DESIGN -->
-    <footer class="bg-[#101f42] text-slate-300 pt-12 pb-6 px-4">
-        <div class="max-w-7xl mx-auto space-y-8">
-            <div class="flex flex-col md:flex-row justify-between items-center border-b border-slate-800 pb-8 gap-4">
-                <div class="text-center md:text-left">
-                    <h3 class="text-white font-extrabold text-lg tracking-wider">DOBLO GONNO COMMUNITY CLINIC & MATERNITY</h3>
-                    <p class="text-xs text-slate-400 italic mt-0.5">Your Health, Our Concern</p>
-                </div>
-                <div class="flex gap-4 text-sm font-medium">
-                    <a href="#home" class="hover:text-white transition-colors">Home</a>
-                    <a href="#about" class="hover:text-white transition-colors">About</a>
-                    <a href="#services" class="hover:text-white transition-colors">Services</a>
-                    <a href="#contact" class="hover:text-white transition-colors">Contact</a>
-                </div>
-            </div>
-            
-            <div class="flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-400 text-center">
-                <p>&copy; 2026 Doblo Gonno Community Clinic & Maternity. All Rights Reserved.</p>
-                <p class="flex items-center gap-1"><i class="fas fa-heart text-red-500"></i> Serving Accra, Ghana with premium medical standards.</p>
-            </div>
+    <!-- Information Breakdown Sections -->
+    <section class="info-footer">
+        <div class="info-col">
+            <h3><i class="fa-solid fa-users"></i> About Us</h3>
+            <p>Doblo Gonno Community Clinic and Maternity is a registered healthcare facility in Accra, Ghana. We are committed to providing accessible and quality healthcare services to our community.</p>
+            <a href="#" class="btn-sm">Learn More</a>
         </div>
-    </footer>
+        
+        <div class="info-col">
+            <h3><i class="fa-solid fa-stethoscopes"></i> Our Services</h3>
+            <ul>
+                <li>• OPD</li>
+                <li>• In Patient (VIP Wards)</li>
+                <li>• Theatre (Caesarian Section, Fibroids, Hernias etc.)</li>
+                <li>• Antenatal (ANC)</li>
+                <li>• Paediatrics</li>
+                <li>• Deliveries</li>
+            </ul>
+            <a href="#" class="btn-sm">View All Services →</a>
+        </div>
 
-    <!-- INTERACTIVE JAVASCRIPT FOR MOBILE RESPONSIVENESS -->
-    <script>
-        const menuBtn = document.getElementById('menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
+        <div class="info-col">
+            <h3><i class="fa-solid fa-location-dot"></i> Location</h3>
+            <p style="font-weight: 600; color: var(--primary-blue);">Clinic Road - Doblo Gonno</p>
+            <p>Main Station</p>
+            <p style="margin-top: 8px;">P.O BOX MD 1647</p>
+            <p>Accra-Ghana</p>
+            <a href="#" class="btn-sm map-btn">View on Map</a>
+        </div>
 
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+        <div class="info-col">
+            <h3><i class="fa-solid fa-headset"></i> Contact Us</h3>
+            <div class="contact-item"><i class="fa-solid fa-phone" style="color:var(--primary-blue);"></i> <span>0342 296080</span></div>
+            <div class="contact-item"><i class="fa-solid fa-mobile-screen" style="color:var(--primary-blue);"></i> <span>053 657 1144</span></div>
+            <div class="contact-item"><i class="fa-solid fa-envelope" style="color:var(--primary-blue);"></i> <span>info@doblogonnoclinic.org</span></div>
+            <div class="contact-item"><i class="fa-solid fa-clock" style="color:var(--primary-blue);"></i> <span>Open 24 hours</span></div>
+        </div>
+    </section>
 
-        // Auto close menu when a choice link is clicked
-        const navLinks = mobileMenu.querySelectorAll('a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
-        });
-    </script>
+    <!-- Footer Copyright -->
+    <div class="bottom-bar">
+        <p>© 2026 Doblo Gonno Community Clinic & Maternity. All Rights Reserved.</p>
+        <p style="font-style: italic; opacity: 0.7; font-size: 0.8rem; margin-top: 4px;">Your Health, Our Concern</p>
+    </div>
+
 </body>
 </html>
